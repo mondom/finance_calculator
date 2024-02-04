@@ -54,7 +54,6 @@ const createTransaction = () => {
 		expensesArea.appendChild(transaction)
 	}
 
-
 	ID++
 }
 const checkCategory = () => {
