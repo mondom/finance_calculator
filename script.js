@@ -16,6 +16,7 @@ let root = document.documentElement
 let ID
 let selectValue
 let selectIcon
+let amountArr = [0]
 
 const openPanel = () => {
 	addTransactionPanel.style.display = 'flex'
@@ -34,10 +35,7 @@ const checkPanel = () => {
 	}
 }
 
-
-
 const createTransaction = () => {
-	
 	const transaction = document.createElement('div')
 	transaction.classList.add('transaction')
 	transaction.setAttribute('id', 'ID')
@@ -54,30 +52,44 @@ const createTransaction = () => {
 		expensesArea.appendChild(transaction)
 	}
 
+	amountArr.push(parseFloat(amountInput.value))
+
+	countTotal()
+
 	ID++
 }
+
+const countTotal = () => {
+	const sum = amountArr.reduce((prevValue, currentValue) => prevValue + currentValue)
+	console.log(amountArr)
+	availableMoney.textContent = `${sum}zł`
+	console.log(sum)
+}
+
 const checkCategory = () => {
 	selectValue = categorySelect.options[categorySelect.selectedIndex].value
 }
 
-const chooseIcon = (option) => {
+const chooseIcon = option => {
 	switch (option) {
 		case 'income':
 			selectIcon = '<i class="fas fa-money-bill-wave"></i>'
-			break;
+			break
 		case 'shopping':
 			selectIcon = '<i class="fas fa-cart-arrow-down"></i>'
-			break;
+			break
 		case 'food':
 			selectIcon = '<i class="fas fa-hamburger"></i>'
-			break;
+			break
 		case 'cinema':
 			selectIcon = '<i class="fas fa-film"></i>'
-			break;
+			break
 	}
 }
 
-const checkSelectValue = () => {}
+const deleteTransaction = () => {
+	const transactionToDelete = document.getElementById(ID)
+}
 
 saveBtn.addEventListener('click', checkPanel)
 cancelBtn.addEventListener('click', closePanel)
