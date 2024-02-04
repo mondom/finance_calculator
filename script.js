@@ -44,7 +44,7 @@ const createTransaction = () => {
 
 	chooseIcon(selectValue)
 
-	transaction.innerHTML = `<p class="transaction-name">${selectIcon} ${nameInput.value}</p>
+	transaction.innerHTML = `<p class="transaction-name">${selectIcon}${nameInput.value}</p>
 	<p class="transaction-amount">${amountInput.value}zł <button class="delete"><i
 				class="fas fa-times"></i></button></p>`
 
@@ -53,6 +53,7 @@ const createTransaction = () => {
 	} else {
 		expensesArea.appendChild(transaction)
 	}
+
 
 	ID++
 }
@@ -63,17 +64,17 @@ const checkCategory = () => {
 const chooseIcon = (option) => {
 	switch (option) {
 		case 'income':
-			selectIcon = '<i class="fas fa-money-bill-wave">';
-			break
+			selectIcon = '<i class="fas fa-money-bill-wave"></i>'
+			break;
 		case 'shopping':
-			selectIcon = '<i class="fas fa-cart-arrow-down"></i>';
-			break
+			selectIcon = '<i class="fas fa-cart-arrow-down"></i>'
+			break;
 		case 'food':
-			selectIcon = '<i class="fas fa-hamburger"></i>';
-			break
+			selectIcon = '<i class="fas fa-hamburger"></i>'
+			break;
 		case 'cinema':
-			selectIcon = '<i class="fas fa-money-bill-wave">';
-			break
+			selectIcon = '<i class="fas fa-film"></i>'
+			break;
 	}
 }
 
