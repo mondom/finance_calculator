@@ -13,7 +13,7 @@ const saveBtn = document.querySelector('.save')
 const cancelBtn = document.querySelector('.cancel')
 
 let root = document.documentElement
-let ID
+let ID = 0
 let selectValue
 let selectIcon
 let amountArr = [0]
@@ -38,12 +38,12 @@ const checkPanel = () => {
 const createTransaction = () => {
 	const transaction = document.createElement('div')
 	transaction.classList.add('transaction')
-	transaction.setAttribute('id', 'ID')
+	transaction.setAttribute('id', ID)
 
 	chooseIcon(selectValue)
 
 	transaction.innerHTML = `<p class="transaction-name">${selectIcon}${nameInput.value}</p>
-	<p class="transaction-amount">${amountInput.value}zł <button class="delete"><i
+	<p class="transaction-amount">${amountInput.value}zł <button class="delete" onclick="deleteTransaction(${ID})"><i
 				class="fas fa-times"></i></button></p>`
 
 	if (selectValue === 'income') {
@@ -57,6 +57,8 @@ const createTransaction = () => {
 	countTotal()
 
 	ID++
+	console.log(transaction)
+	console.log(ID)
 }
 
 const countTotal = () => {
@@ -87,10 +89,14 @@ const chooseIcon = option => {
 	}
 }
 
-const deleteTransaction = () => {
-	const transactionToDelete = document.getElementById(ID)
+const deleteTransaction = (id) => {
+	const transactionToDelete = document.getElementById(id)
+	console.log(transactionToDelete)
+	console.log(id);
 }
 
 saveBtn.addEventListener('click', checkPanel)
 cancelBtn.addEventListener('click', closePanel)
 addTransactionBtn.addEventListener('click', openPanel)
+
+
