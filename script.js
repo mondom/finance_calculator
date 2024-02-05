@@ -48,8 +48,10 @@ const createTransaction = () => {
 
 	if (selectValue === 'income') {
 		incomeArea.appendChild(transaction)
+		transaction.classList.add('income')
 	} else {
 		expensesArea.appendChild(transaction)
+		transaction.classList.add('expenses')
 	}
 
 	amountArr.push(parseFloat(amountInput.value))
@@ -57,15 +59,12 @@ const createTransaction = () => {
 	countTotal()
 
 	ID++
-	console.log(transaction)
-	console.log(ID)
 }
 
 const countTotal = () => {
 	const sum = amountArr.reduce((prevValue, currentValue) => prevValue + currentValue)
-	console.log(amountArr)
+
 	availableMoney.textContent = `${sum}zł`
-	console.log(sum)
 }
 
 const checkCategory = () => {
@@ -89,14 +88,19 @@ const chooseIcon = option => {
 	}
 }
 
-const deleteTransaction = (id) => {
+const deleteTransaction = id => {
 	const transactionToDelete = document.getElementById(id)
-	console.log(transactionToDelete)
-	console.log(id);
+
+	const amountToSub = parseFloat(transactionToDelete.childNodes[2].innerText)
+
+	const transactionIndex = amountArr.indexOf(amountToSub)
+
+	amountArr.splice(transactionIndex, 1)
+
+	
+
 }
 
 saveBtn.addEventListener('click', checkPanel)
 cancelBtn.addEventListener('click', closePanel)
 addTransactionBtn.addEventListener('click', openPanel)
-
-
