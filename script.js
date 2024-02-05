@@ -115,8 +115,22 @@ amountArr = [0]
 availableMoney.textContent = `0zł`
 }
 
+const onLightMode = () => {
+    root.style.setProperty('--first-color', '#F9F9F9');
+    root.style.setProperty('--second-color', '#14161F');
+    root.style.setProperty('--border-color', 'rgba(0, 0, 0, .2)');
+}
+
+const onDarkMode = () => {
+	root.style.setProperty('--first-color', '#14161F')
+	root.style.setProperty('--second-color', '#F9F9F9')
+	root.style.setProperty('--border-color', 'rgba(255, 255, 255, .4)')
+	
+}
 
 
+lightBtn.addEventListener('click', onLightMode)
+darkBtn.addEventListener('click', onDarkMode)
 deleteAllBtn.addEventListener('click', deleteAllTransactions)
 saveBtn.addEventListener('click', checkPanel)
 cancelBtn.addEventListener('click', closePanel)
