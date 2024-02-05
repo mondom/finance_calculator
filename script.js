@@ -20,6 +20,9 @@ let amountArr = [0]
 
 const openPanel = () => {
 	addTransactionPanel.style.display = 'flex'
+	nameInput.value = ''
+	amountInput.value = ''
+	categorySelect.selectedIndex = 0
 }
 
 const closePanel = () => {
@@ -97,10 +100,24 @@ const deleteTransaction = id => {
 
 	amountArr.splice(transactionIndex, 1)
 
-	
+	console.log(transactionToDelete);
+
+	transactionToDelete.classList.contains('income') ?
+	incomeArea.removeChild(transactionToDelete) :
+	expensesArea.removeChild(transactionToDelete)
 
 }
 
+const deleteAllTransactions = () => {
+incomeArea.innerHTML = `<h3>Przychód:</h3>`
+expensesArea.innerHTML = `<h3>Wydatki:</h3>`
+amountArr = [0]
+availableMoney.textContent = `0zł`
+}
+
+
+
+deleteAllBtn.addEventListener('click', deleteAllTransactions)
 saveBtn.addEventListener('click', checkPanel)
 cancelBtn.addEventListener('click', closePanel)
 addTransactionBtn.addEventListener('click', openPanel)
